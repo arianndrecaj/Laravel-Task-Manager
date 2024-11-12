@@ -25,6 +25,7 @@ class TaskController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required',
+            'priority' => 'required|integer|in:1,2,3',
         ]);
 
         auth()->user()->tasks()->create($request->all());
