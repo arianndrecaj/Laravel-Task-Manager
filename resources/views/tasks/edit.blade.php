@@ -20,11 +20,6 @@
                 required>{{ $task->description }}</textarea>
         </div>
 
-        <div class="form-group form-check">
-            <input type="checkbox" name="status" class="form-check-input" {{ $task->status ? 'checked' : '' }}>
-            <label class="form-check-label text-white" for="status">Completed</label>
-        </div>
-
         <div class="form-group">
             <label for="priority" class="text-white">Priority</label>
             <select name="priority" class="form-control bg-dark text-white border-white" required>
@@ -32,6 +27,11 @@
                 <option value="2" {{ $task->priority == 2 ? 'selected' : '' }}>Medium</option>
                 <option value="3" {{ $task->priority == 3 ? 'selected' : '' }}>Low</option>
             </select>
+        </div>
+
+        <div class="form-group form-check">
+            <input type="checkbox" name="status" class="form-check-input" {{ $task->status ? 'checked' : '' }}>
+            <label class="form-check-label text-white" for="status">Completed</label>
         </div>
 
         <button type="submit" class="btn btn-warning btn-lg mt-3">Update Task</button>

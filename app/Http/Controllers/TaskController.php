@@ -50,10 +50,15 @@ class TaskController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required',
+            'priority' => 'required|in:1,2,3',
         ]);
 
-        $task->update($request->all());
-
+        $task->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'status' => $request->has('status') ? 1 : 0, 
+            'priority' => $request->priority,
+        ]);
         return redirect()->route('tasks.index')->with('success', 'Task updated successfully');
     }
 
