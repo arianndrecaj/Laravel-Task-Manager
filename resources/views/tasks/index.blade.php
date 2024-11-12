@@ -11,6 +11,29 @@
             {{ session('success') }}
         </div>
     @endif
+
+    <form action="{{ route('tasks.index') }}" method="GET" class="mb-4">
+        <div class="row">
+            <div class="col-md-4">
+                <label for="status" class="text-white">Status</label>
+                <select name="status" class="form-controler bg-dark text-white border-white">
+                    <option value="">All</option>
+                    <option value="1">Completd</option>
+                    <option value="0">Not Completed</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <label for="prioriry" class="text-white">Priority</label>
+            <select name="priority" class="form-control bg-dark text-white border-white">
+                <option value="0">All</option>
+                <option value="1">High</option>
+                <option value="2">Valie</option>
+            </select>
+        </div>
+    </form>
+
     <div class="table-responsive">
         <table class="table table-hover table-bordered">
             <thead class="table-dark">
