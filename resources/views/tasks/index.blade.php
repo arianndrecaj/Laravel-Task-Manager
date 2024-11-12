@@ -5,7 +5,7 @@
     <h1>Your tasks</h1>
     <a href="{{ route('tasks.create')}}" class="btn btn-primary">Create Task</a>
     <ul>
-        @foreach ($tasks as task )
+        @foreach ($tasks as $task)
             <li>
                 <h4>{{ $task->title }}</h4>
                 <p>{{ $task->description }}</p>
