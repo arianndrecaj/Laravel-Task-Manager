@@ -10,12 +10,14 @@
 
         <div class="form-group">
             <label for="title" class="text-white">Title</label>
-            <input type="text" name="title" value="{{ $task->title }}" class="form-control bg-dark text-white border-white" required>
+            <input type="text" name="title" value="{{ $task->title }}"
+                class="form-control bg-dark text-white border-white" required>
         </div>
 
         <div class="form-group">
             <label for="description" class="text-white">Description</label>
-            <textarea name="description" class="form-control bg-dark text-white border-white" rows="4" required>{{ $task->description }}</textarea>
+            <textarea name="description" class="form-control bg-dark text-white border-white" rows="4"
+                required>{{ $task->description }}</textarea>
         </div>
 
         <div class="form-group form-check">

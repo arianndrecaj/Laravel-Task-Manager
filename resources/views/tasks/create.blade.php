@@ -23,15 +23,6 @@
         </div>
 
         <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="status" class="text-white">Status</label>
-                    <div class="form-check">
-                        <input type="checkbox" name="status" class="form-check-input">
-                        <label class="form-check-label text-white" for="status">Completed</label>
-                    </div>
-                </div>
-            </div>
 
             <div class="col-md-6">
                 <div class="form-group">

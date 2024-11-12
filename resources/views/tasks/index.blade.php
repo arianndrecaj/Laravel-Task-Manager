@@ -6,7 +6,11 @@
         <h1 class="text-light">Your Tasks</h1>
         <a href="{{ route('tasks.create') }}" class="btn btn-light">Create New Task</a>
     </div>
-
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="table-responsive">
         <table class="table table-hover table-bordered">
             <thead class="table-dark">
@@ -29,13 +33,15 @@
                             </span>
                         </td>
                         <td>
-                            <span class="badge {{ $task->priority == 1 ? 'bg-danger' : ($task->priority == 2 ? 'bg-info' : 'bg-secondary') }}">
+                            <span
+                                class="badge {{ $task->priority == 1 ? 'bg-danger' : ($task->priority == 2 ? 'bg-info' : 'bg-secondary') }}">
                                 {{ $task->priority == 1 ? 'High' : ($task->priority == 2 ? 'Medium' : 'Low') }}
                             </span>
                         </td>
                         <td class="text-center">
                             <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                            <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display:inline;" onsubmit="return confirmDelete()">
+                            <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display:inline;"
+                                onsubmit="return confirmDelete()">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger">Delete</button>
