@@ -16,23 +16,28 @@
         <div class="row">
             <div class="col-md-4">
                 <label for="status" class="text-white">Status</label>
-                <select name="status" class="form-controler bg-dark text-white border-white">
-                    <option value="">All</option>
-                    <option value="1">Completd</option>
-                    <option value="0">Not Completed</option>
+                <select name="status" class="form-control bg-dark text-white border-white">
+                    <option value="" {{ session('status') === null ? 'selected' : '' }}>All</option>
+                    <option value="1" {{ session('status') == '1' ? 'selected' : '' }}>Completed</option>
+                    <option value="0" {{ session('status') == '0' ? 'selected' : '' }}>Not Completed</option>
                 </select>
             </div>
-        </div>
-
-        <div class="col-md-4">
-            <label for="prioriry" class="text-white">Priority</label>
-            <select name="priority" class="form-control bg-dark text-white border-white">
-                <option value="0">All</option>
-                <option value="1">High</option>
-                <option value="2">Valie</option>
-            </select>
+            <div class="col-md-4">
+                <label for="priority" class="text-white">Priority</label>
+                <select name="priority" class="form-control bg-dark text-white border-white">
+                    <option value="" {{ session('priority') === null ? 'selected' : '' }}>All</option>
+                    <option value="1" {{ session('priority') == '1' ? 'selected' : '' }}>High</option>
+                    <option value="2" {{ session('priority') == '2' ? 'selected' : '' }}>Medium</option>
+                    <option value="3" {{ session('priority') == '3' ? 'selected' : '' }}>Low</option>
+                </select>
+            </div>
+            <div class="col-md-4 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </div>
         </div>
     </form>
+
+
 
     <div class="table-responsive">
         <table class="table table-hover table-bordered">

@@ -23,7 +23,6 @@
         </div>
 
         <div class="row">
-
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="priority" class="text-white">Priority</label>
@@ -35,7 +34,7 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="form-group">
             <button type="submit" class="btn btn-success btn-lg">Create Task</button>
         </div>

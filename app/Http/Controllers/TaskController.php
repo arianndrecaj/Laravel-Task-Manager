@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers;
 
@@ -9,9 +9,27 @@ use App\Http\Controllers\Controller;
 
 class TaskController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $tasks = auth()->user()->tasks;
+        if ($request->has('status')) {
+            session(['status' => $request->status]);
+        }
+        if ($request->has('priority')) {
+            session(['priority' => $request->priority]);
+        }
+
+        $tasks = Task::query();
+
+        if (session('status') !== null) {
+            $tasks->where('status', session('status'));
+        }
+
+        if (session('priority') !== null) {
+            $tasks->where('priority', session('priority'));
+        }
+
+        $tasks = $tasks->get();
+
         return view('tasks.index', compact('tasks'));
     }
 
@@ -24,8 +42,7 @@ class TaskController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'required',
-            'priority' => 'required|integer|in:1,2,3',
+            'description' => 'required'
         ]);
 
         auth()->user()->tasks()->create($request->all());
@@ -50,14 +67,13 @@ class TaskController extends Controller
 
         $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'required',
-            'priority' => 'required|in:1,2,3',
+            'description' => 'required'
         ]);
 
         $task->update([
             'title' => $request->title,
             'description' => $request->description,
-            'status' => $request->has('status') ? 1 : 0, 
+            'status' => $request->has('status') ? 1 : 0,
             'priority' => $request->priority,
         ]);
         return redirect()->route('tasks.index')->with('success', 'Task updated successfully');
