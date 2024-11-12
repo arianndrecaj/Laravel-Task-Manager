@@ -35,7 +35,7 @@
                         </td>
                         <td class="text-center">
                             <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                            <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display:inline;">
+                            <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display:inline;" onsubmit="return confirmDelete()">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger">Delete</button>
@@ -47,4 +47,10 @@
         </table>
     </div>
 </div>
+
+<script>
+    function confirmDelete() {
+        return confirm('Are you sure you want to delete this task?');
+    }
+</script>
 @endsection
