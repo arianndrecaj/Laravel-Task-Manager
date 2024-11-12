@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('title');
             $table->text('description');
-            $table->timestamps();
             $table->boolean('status')->default(false);
+            $table->integer('priority')->nullable();
+            $table->timestamps();
         });
     }
 
