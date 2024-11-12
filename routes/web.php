@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TaskController;
+use App\Http\Controllers\Tas;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,7 +18,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->group(callback: function () {
     Route::resource('tasks', TaskController::class);
 });
 

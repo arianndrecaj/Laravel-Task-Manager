@@ -1,79 +1,67 @@
-<?php
-
-namespace App\Http\Controllers;
+<?php 
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TaskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $tasks = auth()->user()->tasks;
+        return view('tasks.index', compact('tasks'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('tasks.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:225',
+            'title' => 'required|string|max:255',
             'description' => 'required',
         ]);
 
-        $task = new Task([
-            'title' => $request->title,
-            'description' => $request->description,
-            'status' => $request->status ?? false,
-            'priority' => $request->priority,
+        auth()->user()->tasks()->create($request->all());
+
+        return redirect()->route('tasks.index')->with('success', 'Task created successfully');
+    }
+
+    public function edit(Task $task)
+    {
+        if ($task->user_id !== auth()->id()) {
+            return redirect()->route('tasks.index')->with('error', 'You are not authorized to edit this task.');
+        }
+
+        return view('tasks.edit', compact('task'));
+    }
+
+    public function update(Request $request, Task $task)
+    {
+        if ($task->user_id !== auth()->id()) {
+            return redirect()->route('tasks.index')->with('error', 'You are not authorized to update this task.');
+        }
+
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required',
         ]);
 
-        $request->user()->tasks()->tasks($task);
+        $task->update($request->all());
 
-        return redirect()->route('tasks.index')->with('success','Task created successfully');
+        return redirect()->route('tasks.index')->with('success', 'Task updated successfully');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function destroy(Task $task)
     {
-        //
-    }
+        if ($task->user_id !== auth()->id()) {
+            return redirect()->route('tasks.index')->with('error', 'You are not authorized to delete this task.');
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+        $task->delete();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('tasks.index')->with('success', 'Task deleted successfully');
     }
 }
