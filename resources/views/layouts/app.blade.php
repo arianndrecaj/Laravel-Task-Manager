@@ -10,7 +10,6 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
-
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -20,37 +19,86 @@
 
     <style>
         body,
-        .container,
-        .table,
-        .btn,
         h1,
         h4,
         p {
             color: white !important;
         }
 
-        body {
-            background-color: #121212;
-        }
-
-        .form-control {
+        .table,
+        .table-bordered {
             background-color: #333;
             color: white;
-            border: 1px solid #444;
         }
 
-
-        .form-control:focus {
+        .table-light {
             background-color: #444;
-            border-color: #5c6bc0;
-            box-shadow: 0 0 5px rgba(92, 107, 192, 0.6);
         }
 
-        .btn {
-            color: black;
+        .table-dark {
+            background-color: #222;
         }
-    </style>
 
+        .table th,
+        .table td {
+            border: 1px solid #555;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: #555;
+        }
+
+        .text-light {
+            color: white;
+
+            .btn-light {
+                background-color: #f8f9fa;
+                color: #333;
+            }
+
+            .btn-light:hover {
+                background-color: #ddd;
+            }
+
+            .btn-warning {
+                background-color: #f0ad4e;
+                border-color: #f0ad4e;
+            }
+
+            .btn-danger {
+                background-color: #dc3545;
+                border-color: #dc3545;
+            }
+
+            .btn-success {
+                background-color: #28a745;
+                border-color: #28a745;
+            }
+
+            .btn-info {
+                background-color: #17a2b8;
+                border-color: #17a2b8;
+            }
+
+            .badge-success {
+                background-color: #28a745;
+            }
+
+            .badge-warning {
+                background-color: #ffc107;
+            }
+
+            .badge-danger {
+                background-color: #dc3545;
+            }
+
+            .badge-info {
+                background-color: #17a2b8;
+            }
+
+            .badge-secondary {
+                background-color: #6c757d;
+            }
     </style>
 </head>
 
@@ -60,7 +108,7 @@
 
         <!-- Page Heading -->
         @isset($header)
-            <header class="bg-white dark:bg-gray-800 shadow">
+            <header class="bg-dark text-white shadow">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>

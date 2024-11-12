@@ -3,13 +3,13 @@
 @section('content')
 <div class="container my-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="text-primary">Your Tasks</h1>
-        <a href="{{ route('tasks.create') }}" class="btn btn-success">Create New Task</a>
+        <h1 class="text-light">Your Tasks</h1>
+        <a href="{{ route('tasks.create') }}" class="btn btn-light">Create New Task</a>
     </div>
 
     <div class="table-responsive">
         <table class="table table-hover table-bordered">
-            <thead class="table-light">
+            <thead class="table-dark">
                 <tr>
                     <th>Title</th>
                     <th>Description</th>
