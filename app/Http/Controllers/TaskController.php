@@ -18,7 +18,7 @@ class TaskController extends Controller
             session(['priority' => $request->priority]);
         }
 
-        $tasks = Task::query();
+        $tasks = Task::where('user_id', auth()->id()); 
 
         if (session('status') !== null) {
             $tasks->where('status', session('status'));
@@ -32,6 +32,7 @@ class TaskController extends Controller
 
         return view('tasks.index', compact('tasks'));
     }
+
 
     public function create()
     {
