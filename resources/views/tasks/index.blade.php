@@ -58,7 +58,7 @@
             <td>{{ $task->description }}</td>
             <td>
                 <span class="badge {{ $task->status ? 'bg-success' : 'bg-warning' }}">
-                    {{ $task->status ? 'Completed' : 'Pending' }}
+                    {{ $task->status ? 'Completed' : 'Not Completed' }}
                 </span>
             </td>
             <td>
